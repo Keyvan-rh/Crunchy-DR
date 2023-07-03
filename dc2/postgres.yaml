@@ -1,0 +1,47 @@
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: awx
+spec:
+  shutdown: false
+  standby:
+    enabled: true
+    host: 192.168.1.161
+    port: 5432
+  image: registry.connect.redhat.com/crunchydata/crunchy-postgres@sha256:1c336e8a3a7447be70a19235b0e9bcd19663955c8f480949281f5d24463637e5
+  postgresVersion: 13
+  customReplicationTLSSecret:
+    name: hippo-repl-tls
+  customTLSSecret:
+    name: hippo-tls
+  instances:
+    - replicas: 2
+      dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 10Gi
+  backups:
+    pgbackrest:
+      image: registry.connect.redhat.com/crunchydata/crunchy-pgbackrest@sha256:cbeb0123e7439b12bece249b730eb367fcf5c834541273497c37057deedcdc58
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: 20Gi
+  patroni:
+    dynamicConfiguration:
+      postgresql:
+        pg_hba:
+          - "host all all all md5"
+        parameters:
+          max_parallel_workers: 2
+          max_worker_processes: 2
+          shared_buffers: 256MB
+          work_mem: 64MB
+          archive_timeout: 300

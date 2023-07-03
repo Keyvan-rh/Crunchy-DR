@@ -1,0 +1,6 @@
+namespace: hippo-dr
+
+resources:
+- cert.yaml
+- cert-repl.yaml
+- postgres.yaml
