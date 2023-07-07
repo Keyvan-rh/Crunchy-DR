@@ -1,15 +1,15 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: hippo-repl-certmanager
+  name: aap-db-repl-certmanager
 spec:
   # Secret names are always required.
-  secretName: hippo-repl-tls
+  secretName: aap-db-repl-tls
   duration: 2160h # 90d
   renewBefore: 360h # 15d
   subject:
     organizations:
-    - hippo-org
+    - aap-db-org
   # The use of the common name field has been deprecated since 2000 and is
   # discouraged from being used.
   commonName: _crunchyrepl
@@ -20,7 +20,7 @@ spec:
   usages:
     - digital signature
     - key encipherment
-  # At least one of a DNS Name, URI, or IP address is required.
+  # At least one of a DNS Name, URI, or IP addbess is required.
   dnsNames:
   - _crunchyrepl
   issuerRef:

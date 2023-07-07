@@ -1,4 +1,4 @@
-namespace: hippo-dr
+namespace: aap-db
 
 resources:
 - cert.yaml

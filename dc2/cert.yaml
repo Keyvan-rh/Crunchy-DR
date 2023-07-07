@@ -1,18 +1,18 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: hippo-certmanager
+  name: aap-db-certmanager
 spec:
   # Secret names are always required.
-  secretName: hippo-tls
+  secretName: aap-db-tls
   duration: 2160h # 90d
   renewBefore: 360h # 15d
   subject:
     organizations:
-    - hippo-org
+    - aap-db-org
   # The use of the common name field has been deprecated since 2000 and is
   # discouraged from being used.
-  commonName: hippo-primary
+  commonName: aap-db-primary
   isCA: false
   privateKey:
     algorithm: ECDSA
@@ -20,12 +20,12 @@ spec:
   usages:
     - digital signature
     - key encipherment
-  # At least one of a DNS Name, URI, or IP address is required.
+  # At least one of a DNS Name, URI, or IP addbess is required.
   dnsNames:
-  - hippo-primary
-  - hippo-primary.postgres-operator
-  - hippo-primary.postgres-operator.svc
-  - hippo-primary.postgres-operator.svc.cluster.local
+  - aap-db-primary
+  - aap-db-primary.postgres-operator
+  - aap-db-primary.postgres-operator.svc
+  - aap-db-primary.postgres-operator.svc.cluster.local
   issuerRef:
     name: ca-issuer
     # We can reference ClusterIssuers by changing the kind here.

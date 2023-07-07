@@ -11,9 +11,9 @@ spec:
   image: registry.connect.redhat.com/crunchydata/crunchy-postgres@sha256:1c336e8a3a7447be70a19235b0e9bcd19663955c8f480949281f5d24463637e5
   postgresVersion: 13
   customReplicationTLSSecret:
-    name: hippo-repl-tls
+    name: aap-db-repl-tls
   customTLSSecret:
-    name: hippo-tls
+    name: aap-db-tls
   instances:
     - replicas: 2
       dataVolumeClaimSpec:
