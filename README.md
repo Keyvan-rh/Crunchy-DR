@@ -58,3 +58,5 @@ Steps to stup DR postgres cluster:
 ```shell
 oc apply -k dc2
 ``` 
+NOTE:
+   You need to expose the service on DC1 with a public IP address and make sure the port 5432 (if you have not change the default value) is accessable from internet. (more to come on this section).
