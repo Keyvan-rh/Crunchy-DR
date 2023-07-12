@@ -36,7 +36,7 @@ The CA certificate issuer is important as the Postgres components require that t
 
 ## Create a project and install Crunchy operator
 
-Create a new project:
+Login to OPENSHIFT that you plan to have your master Postgresql "dc1" and create a new project:
 
 ```
 oc create aap-db
@@ -66,10 +66,24 @@ The following process takes place during the deployment:
 * Custom certificate is generated for Postgres replication using the CA ClusterIssuer.
 * Postgres cluster deployed using the custom certificates.
 
-### Setup DC2 / DR cluster
-Steps to stup DR postgres cluster:
+## Setup DC2 / DR cluster
+Steps to setup DR postgres cluster:
 
-* Follow the README on the certman-dr to setup the certificate on the secound openshift cluster
+* Follow the README in the certman-dr folder to setup the certificate on the secound openshift cluster
+
+### Create a project and install Crunchy operator
+
+Login to OPENSHIFT that you plan to have your master Postgresql "dc1" and create a new project:
+
+```
+oc create aap-db
+```
+
+Go to the operatorHub and select "Crunchy Postgres for Kubernetes" certified. Click on install and in secound page select A specific namespace on the cluster and pick "aap-db"
+
+NOTE: at the time of this test the latest version of the operator is 5.3.0
+
+### Setup postgresql dr cluster
 
 * Change directory to the root of project "Crunchy-DR"
 
