@@ -73,7 +73,7 @@ Steps to setup DR postgres cluster:
 
 ### Create a project and install Crunchy operator
 
-Login to OPENSHIFT that you plan to have your master Postgresql "dc1" and create a new project:
+Login to OPENSHIFT that you plan to have your DR Postgresql "dc2" and create a new project:
 
 ```
 oc create aap-db
