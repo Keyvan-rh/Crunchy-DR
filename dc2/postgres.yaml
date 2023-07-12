@@ -6,6 +6,7 @@ spec:
   shutdown: false
   standby:
     enabled: true
+    # ip address or dns name of main database machine. In my case the IP of SNO1 is .161
     host: 192.168.1.161
     port: 5432
   image: registry.connect.redhat.com/crunchydata/crunchy-postgres@sha256:1c336e8a3a7447be70a19235b0e9bcd19663955c8f480949281f5d24463637e5
