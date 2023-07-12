@@ -4,3 +4,4 @@ resources:
 - cert.yaml
 - cert-repl.yaml
 - postgres.yaml
+- ext-service.yaml

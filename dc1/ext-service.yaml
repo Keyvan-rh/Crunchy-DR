@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ext-service
+spec:
+  externalIPs:
+    - 192.168.1.161
+  ports:
+    - name: postgres
+      protocol: TCP
+      port: 5432
+      targetPort: postgres
+  selector:
+    postgres-operator.crunchydata.com/cluster: awx
+    postgres-operator.crunchydata.com/role: replica
+
