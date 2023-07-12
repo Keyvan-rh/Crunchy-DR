@@ -13,6 +13,11 @@ The first step is to deploy Cert-Manager to the Kubernetes cluster.  To do this,
 ## Setup Certificate Issuer
 After Cert-Manager has been deployed, the next step used in this example is to set up a Certificate Issuer.  The Certificate Issuer can be configured to be local to a namespace or cluster wide.  In the examples provided here, a cluster wide issuer is created.
 
+## NOTE:
+   You need a service with a external IP address for DC1 and make sure the port 5432 (if you have not change the default value) is accessable from internet.
+   * Update dc1/ext-service.yaml with the IP/s of your host/worker nodes.
+   * Update dc2/postgres.yaml with the correct IP that you provided in the last step.
+
 ### Configure Issuer
 
 ```
@@ -28,6 +33,19 @@ This Kustomize deployment performs the following actions:
 By default, the issues are created in the cert-manager namespace which is the default namespace for Cert-Manager.
 
 The CA certificate issuer is important as the Postgres components require that the ca.crt be the same for the certificates generated to support Postgres.
+
+## Create a project and install Crunchy operator
+
+Create a new project:
+
+```
+oc create aap-db
+```
+
+Go to the operatorHub and select "Crunchy Postgres for Kubernetes" certified. Click on install and in secound page select A specific namespace on the cluster and pick "aap-db"
+
+NOTE: at the time of this test the latest version of the operator is 5.3.0
+
 
 ## Deploy Postgres with Custom Certificates
 
@@ -58,5 +76,4 @@ Steps to stup DR postgres cluster:
 ```shell
 oc apply -k dc2
 ``` 
-NOTE:
-   You need to expose the service on DC1 with a public IP address and make sure the port 5432 (if you have not change the default value) is accessable from internet. (more to come on this section).
+
